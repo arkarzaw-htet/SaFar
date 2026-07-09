@@ -7,17 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserCreateRequest {
+public class UserSummaryResponse {
+
+    private Long id;
 
     private String firstName;
 
     private String lastName;
-
-    private String email;
-
-    private String password;
-
-    private String phoneNumber;
-
-    private String country;
 }

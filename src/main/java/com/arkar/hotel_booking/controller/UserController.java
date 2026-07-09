@@ -1,5 +1,8 @@
 package com.arkar.hotel_booking.controller;
 
+import com.arkar.hotel_booking.dto.user.UserCreateRequest;
+import com.arkar.hotel_booking.dto.user.UserLoginRequest;
+import com.arkar.hotel_booking.dto.user.UserResponse;
 import com.arkar.hotel_booking.entity.User;
 import com.arkar.hotel_booking.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -15,17 +18,17 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public UserResponse createUser(@RequestBody UserCreateRequest user) {
         return userService.createUser(user);
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
+    public List<UserResponse> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable Long id) {
+    public UserResponse getUser(@PathVariable Long id) {
         return userService.getUser(id);
     }
 
