@@ -1,5 +1,8 @@
 package com.arkar.hotel_booking.controller;
 
+import com.arkar.hotel_booking.dto.room.RoomCreateRequest;
+import com.arkar.hotel_booking.dto.room.RoomResponse;
+import com.arkar.hotel_booking.dto.room.RoomSummaryResponse;
 import com.arkar.hotel_booking.entity.Room;
 import com.arkar.hotel_booking.service.RoomService;
 import lombok.RequiredArgsConstructor;
@@ -14,18 +17,19 @@ public class RoomController {
 
     private final RoomService roomService;
 
+
     @PostMapping
-    public Room createRoom(@RequestBody Room room) {
+    public RoomResponse createRoom(@RequestBody RoomCreateRequest room) {
         return roomService.createRoom(room);
     }
 
     @GetMapping
-    public List<Room> getAllRooms() {
+    public List<RoomResponse> getAllRooms() {
         return roomService.getAllRooms();
     }
 
     @GetMapping("/{id}")
-    public Room getRoom(@PathVariable Long id) {
+    public RoomResponse getRoom(@PathVariable Long id) {
         return roomService.getRoom(id);
     }
 
