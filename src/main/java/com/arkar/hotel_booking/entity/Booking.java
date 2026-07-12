@@ -24,7 +24,8 @@ public class Booking {
 
     private Integer guestCount;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private BookingStatus status;
 
     private BigDecimal totalPrice;
 

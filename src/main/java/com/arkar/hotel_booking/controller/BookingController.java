@@ -1,6 +1,9 @@
 package com.arkar.hotel_booking.controller;
 
-import com.arkar.hotel_booking.entity.Booking;
+import com.arkar.hotel_booking.dto.booking.BookingCreateRequest;
+import com.arkar.hotel_booking.dto.booking.BookingResponse;
+import com.arkar.hotel_booking.dto.booking.BookingSummaryResponse;
+import com.arkar.hotel_booking.dto.booking.BookingUpdateRequest;
 import com.arkar.hotel_booking.service.BookingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,18 +18,26 @@ public class BookingController {
     private final BookingService bookingService;
 
     @PostMapping
-    public Booking createBooking(@RequestBody Booking booking) {
-        return bookingService.createBooking(booking);
+    public BookingResponse createBooking(@RequestBody BookingCreateRequest request) {
+        return bookingService.createBooking(request);
     }
 
     @GetMapping
-    public List<Booking> getAllBookings() {
+    public List<BookingSummaryResponse> getAllBookings() {
         return bookingService.getAllBookings();
     }
 
     @GetMapping("/{id}")
-    public Booking getBooking(@PathVariable Long id) {
+    public BookingResponse getBooking(@PathVariable Long id) {
         return bookingService.getBooking(id);
+    }
+
+    @PutMapping("/{id}")
+    public BookingResponse updateBooking(
+            @PathVariable Long id,
+            @RequestBody BookingUpdateRequest request
+    ) {
+        return bookingService.updateBooking(id, request);
     }
 
     @DeleteMapping("/{id}")
