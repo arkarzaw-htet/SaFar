@@ -1,5 +1,6 @@
 package com.arkar.hotel_booking.controller;
 
+import com.arkar.hotel_booking.dto.booking.BookingSummaryResponse;
 import com.arkar.hotel_booking.dto.user.UserCreateRequest;
 import com.arkar.hotel_booking.dto.user.UserLoginRequest;
 import com.arkar.hotel_booking.dto.user.UserResponse;
@@ -16,7 +17,10 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-
+    @GetMapping("/{id}/bookings")
+    public List<BookingSummaryResponse> getUserBookings(@PathVariable Long id) {
+        return userService.getUserBookings(id);
+    }
     @PostMapping
     public UserResponse createUser(@RequestBody UserCreateRequest user) {
         return userService.createUser(user);

@@ -80,7 +80,7 @@ public class BookingService {
         booking.setCheckInDate(request.getCheckInDate());
         booking.setCheckOutDate(request.getCheckOutDate());
         booking.setGuestCount(request.getGuestCount());
-        booking.setStatus(request.getStatus());
+        booking.setStatus(BookingStatus.valueOf(request.getStatus()));
 
         long nights = ChronoUnit.DAYS.between(
                 request.getCheckInDate(),

@@ -1,9 +1,12 @@
 package com.arkar.hotel_booking.service;
 
+import com.arkar.hotel_booking.dto.booking.BookingSummaryResponse;
 import com.arkar.hotel_booking.dto.user.UserCreateRequest;
 import com.arkar.hotel_booking.dto.user.UserResponse;
 import com.arkar.hotel_booking.dto.user.UserSummaryResponse;
+import com.arkar.hotel_booking.entity.Booking;
 import com.arkar.hotel_booking.entity.User;
+import com.arkar.hotel_booking.repository.BookingRepository;
 import com.arkar.hotel_booking.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,7 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final BookingRepository bookingRepository;
 
     public UserResponse createUser(UserCreateRequest request) {
 
@@ -40,6 +44,25 @@ public class UserService {
                 savedUser.getPhoneNumber(),
                 savedUser.getCountry(),
                 savedUser.getCreatedAt()
+        );
+    }
+    public List<BookingSummaryResponse> getUserBookings(Long userId) {
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return bookingRepository.findByUser(user)
+                .stream()
+                .map(this::mapBookingToSummary)
+                .toList();
+    }
+    private BookingSummaryResponse mapBookingToSummary(Booking booking) {
+
+        return new BookingSummaryResponse(
+                booking.getId(),
+                booking.getCheckInDate(),
+                booking.getCheckOutDate(),
+                booking.getStatus()
         );
     }
     public List<UserResponse> getAllUsers() {
