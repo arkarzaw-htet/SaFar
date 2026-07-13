@@ -5,6 +5,7 @@ import com.arkar.hotel_booking.dto.hotel.HotelResponse;
 import com.arkar.hotel_booking.dto.hotel.HotelSummaryResponse;
 import com.arkar.hotel_booking.dto.hotel.HotelUpdateRequest;
 import com.arkar.hotel_booking.service.HotelService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class HotelController {
     private final HotelService hotelService;
 
     @PostMapping
-    public HotelResponse createHotel(@RequestBody HotelCreateRequest request) {
+    public HotelResponse createHotel(@Valid @RequestBody HotelCreateRequest request) {
         return hotelService.createHotel(request);
     }
 
@@ -35,7 +36,7 @@ public class HotelController {
     @PutMapping("/{id}")
     public HotelResponse updateHotel(
             @PathVariable Long id,
-            @RequestBody HotelUpdateRequest request
+            @Valid @RequestBody HotelUpdateRequest request
     ) {
         return hotelService.updateHotel(id, request);
     }

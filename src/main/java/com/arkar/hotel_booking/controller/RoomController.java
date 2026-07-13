@@ -5,6 +5,7 @@ import com.arkar.hotel_booking.dto.room.RoomResponse;
 import com.arkar.hotel_booking.dto.room.RoomSummaryResponse;
 import com.arkar.hotel_booking.entity.Room;
 import com.arkar.hotel_booking.service.RoomService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class RoomController {
 
 
     @PostMapping
-    public RoomResponse createRoom(@RequestBody RoomCreateRequest room) {
+    public RoomResponse createRoom(@Valid @RequestBody RoomCreateRequest room) {
         return roomService.createRoom(room);
     }
 

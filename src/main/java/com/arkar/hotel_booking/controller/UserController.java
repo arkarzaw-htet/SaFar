@@ -6,6 +6,7 @@ import com.arkar.hotel_booking.dto.user.UserLoginRequest;
 import com.arkar.hotel_booking.dto.user.UserResponse;
 import com.arkar.hotel_booking.entity.User;
 import com.arkar.hotel_booking.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class UserController {
         return userService.getUserBookings(id);
     }
     @PostMapping
-    public UserResponse createUser(@RequestBody UserCreateRequest user) {
+    public UserResponse createUser(@Valid @RequestBody UserCreateRequest user) {
         return userService.createUser(user);
     }
 

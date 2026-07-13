@@ -9,6 +9,7 @@ import com.arkar.hotel_booking.entity.User;
 import com.arkar.hotel_booking.repository.BookingRepository;
 import com.arkar.hotel_booking.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -20,6 +21,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final BookingRepository bookingRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public UserResponse createUser(UserCreateRequest request) {
 
@@ -28,7 +30,8 @@ public class UserService {
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
+
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setPhoneNumber(request.getPhoneNumber());
         user.setCountry(request.getCountry());
 

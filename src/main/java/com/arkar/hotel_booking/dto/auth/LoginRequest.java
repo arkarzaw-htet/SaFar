@@ -1,4 +1,4 @@
-package com.arkar.hotel_booking.dto.user;
+package com.arkar.hotel_booking.dto.auth;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserLoginRequest {
+public class LoginRequest {
 
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email")
