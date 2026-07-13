@@ -24,6 +24,10 @@ public class User {
 
     private String lastName;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private UserRole role = UserRole.GUEST;  // Default to GUEST
+
     @Column(unique = true, nullable = false)
     private String email;
 
