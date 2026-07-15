@@ -44,4 +44,6 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Review> reviews = new ArrayList<>();
+    @OneToMany(mappedBy = "owner")
+    private List<Hotel> ownedHotels = new ArrayList<>();
 }
